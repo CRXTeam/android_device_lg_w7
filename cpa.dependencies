@@ -1,5 +1,4 @@
 [
-
   {
     "remote": "github",
     "revision": "cm-11.0",
@@ -25,7 +24,7 @@
     "target_path": "hardware/qcom/media-caf-new"
   },
   {
-    "remote": "github",
+    "remote":"github",
     "revision": "kitkat",
     "repository": "CRXTeam/proprietary_vendor_w7",
     "target_path": "vendor/lge/w7"
@@ -36,5 +35,4 @@
     "repository":   "CRXTeam/LG_L90_kernel",
     "target_path":  "kernel/lge/msm8226"
   }
- 
 ]
