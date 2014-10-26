@@ -31,7 +31,7 @@
   },
   {
     "remote":       "github",
-    "revision":     "quarx",
+    "revision":     "cm-11.0",
     "repository":   "CRXTeam/LG_L90_kernel",
     "target_path":  "kernel/lge/msm8226"
   }
