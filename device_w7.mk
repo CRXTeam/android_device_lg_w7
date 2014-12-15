@@ -64,18 +64,24 @@ PRODUCT_COPY_FILES += \
     device/lge/w7/prebuilt/etc/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
     device/lge/w7/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
     device/lge/w7/prebuilt/etc/audio_effects.conf:system/etc/audio_effects.conf \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     device/lge/w7/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/lge/w7/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/lge/w7/prebuilt/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/lge/w7/prebuilt/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
     device/lge/w7/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
-    device/lge/w7/prebuilt/usr/keylayout/gpio-keys_d415.kl:system/usr/keylayout/gpio-keys_d415.kl \
-    device/lge/w7/prebuilt/usr/keylayout/gpio-keys_d410.kl:system/usr/keylayout/gpio-keys_d410.kl \
+    device/lge/w7/prebuilt/usr/keylayout/Generic-D4x5.kl:system/usr/keylayout/Generic-D4x5.kl \
+    device/lge/w7/prebuilt/usr/keylayout/Generic-D410.kl:system/usr/keylayout/Generic-D410.kl \
     device/lge/w7/prebuilt/etc/init.zetaw.fm.sh:system/etc/init.zetaw.fm.sh \
     device/lge/w7/prebuilt/etc/init.zetaw.ssr.wifi.sh:system/etc/init.zetaw.ssr.wifi.sh \
     device/lge/w7/prebuilt/etc/init.zetaw.wifi.sh:system/etc/init.zetaw.wifi.sh \
     device/lge/w7/prebuilt/etc/init.crda.sh:system/etc/init.crda.sh \
     device/lge/w7/prebuilt/etc/init.zetaw.post_boot.sh:system/etc/init.zetaw.post_boot.sh \
+    device/lge/w7/prebuilt/etc/init.zetaw.model.sh:system/etc/init.zetaw.model.sh \
+    device/lge/w7/prebuilt/etc/init.zetaw.bt.sh:system/etc/init.zetaw.bt.sh \
     device/lge/w7/prebuilt/etc/sap.conf:system/etc/sap.conf \
     device/lge/w7/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/lge/w7/prebuilt/etc/msap.conf:system/etc/msap.conf \
@@ -87,9 +93,7 @@ PRODUCT_COPY_FILES += \
     device/lge/w7/prebuilt/etc/nfc-nci.conf:system/etc/nfc-nci.conf \
     device/lge/w7/prebuilt/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     device/lge/w7/prebuilt/etc/nfcee_access.xml:system/etc/nfcee_access.xml \
-    device/lge/w7/prebuilt/etc/quipc.conf:system/etc/quipc.conf \
-    device/lge/w7/prebuilt/etc/init.d/10nfc_checker:system/etc/init.d/10nfc_checker \
-    device/lge/w7/prebuilt/etc/init.d/11keys_checker:system/etc/init.d/11keys_checker
+    device/lge/w7/prebuilt/etc/quipc.conf:system/etc/quipc.conf
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -123,8 +127,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/lge/w7/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab
 
+# Offmode Charging
+PRODUCT_PACKAGES += \
+    charger_res_w7 \
+    charger_w7
+
 # Audio
 PRODUCT_PACKAGES += \
+    audio.primary.msm8226 \
     audio_policy.msm8226 \
     audio.a2dp.default \
     audio.usb.default \
@@ -134,6 +144,9 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcompostprocbundle \
     libqcomvoiceprocessing \
+    libaudioroute \
+    libtinyalsa \
+    libtinycompress \
     tinycap \
     tinymix \
     tinypcminfo \
@@ -182,6 +195,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
     wpa_supplicant_overlay.conf \
+    libwpa_client \
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf \
     libwcnss_qmi \
 
 # Charger
@@ -306,7 +323,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=true \
     qcom.hw.aac.encoder=true \
     af.resampler.quality=255 \
-    persist.audio.lowlatency.rec=false
+    persist.audio.lowlatency.rec=false \
+    persist.sys.media.use-awesome=true
 
 # WiFi
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -365,7 +383,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
-    nfc_nci.w7 \
+    nfc_nci.pn54x.default \
     com.android.nfc_extras
 
 NFCEE_ACCESS_PATH := device/lge/w7/prebuilt/etc/nfcee_access.xml
@@ -377,10 +395,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Enable KSM by default
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1
-
-# CmUpdater
-PRODUCT_PROPERTY_OVERRIDES += \
-    cm.updater.uri=http://api.quarx.cm-for.us/api \
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
