@@ -13,7 +13,7 @@
   },
   {
     "remote":"github",
-    "revision": "cm-12.0",
+    "revision": "lollipop",
     "repository": "CRXTeam/proprietary_vendor_w7",
     "target_path": "vendor/lge/w7"
   },
