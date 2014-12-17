@@ -1,7 +1,7 @@
 [
   {
     "remote": "github",
-    "revision": "caf/cm-12.0"
+    "revision": "caf/cm-12.0",
     "repository": "CyanogenMod/android_device_qcom_common",
     "target_path": "device/qcom/common"
   },
