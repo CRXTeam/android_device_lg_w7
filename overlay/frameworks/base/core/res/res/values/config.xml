@@ -290,8 +290,6 @@
         config to 7. -->
     <integer name="config_deviceHardwareKeys">1</integer>
 
-    <!-- Camera flash -->
-    <bool name="config_device_has_camera_flash">true</bool>
     <!-- Device supports LED flashlight 
     <bool name="config_enableTorch">true</bool> -->
 
