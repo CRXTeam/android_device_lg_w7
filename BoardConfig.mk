@@ -184,6 +184,9 @@ BOARD_NFC_CHIPSET := pn547
 BOARD_SEPOLICY_DIRS += \
 	device/lge/w7/sepolicy
 
+# RIL
+BOARD_RIL_CLASS := ../../../device/lge/w7/ril/
+
 BOARD_SEPOLICY_UNION += \
 	adbd.te \
 	app.te \
