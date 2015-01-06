@@ -49,7 +49,7 @@ import java.util.ArrayList;
  *
  * {@hide}
  */
-public class LGEQualcommRIL extends RIL implements CommandsInterface {
+public class LgeW7RIL extends RIL implements CommandsInterface {
     protected HandlerThread mIccThread;
     protected IccHandler mIccHandler;
     protected String mAid;
@@ -66,12 +66,12 @@ public class LGEQualcommRIL extends RIL implements CommandsInterface {
     private int mSetPreferredNetworkType = -1;
     private Message mPendingNetworkResponse;
 
-    public LGEQualcommRIL(Context context, int preferredNetworkType,
+    public LgeW7RIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         this(context, preferredNetworkType, cdmaSubscription);
     }
 
-    public LGEQualcommRIL(Context context, int networkMode, int cdmaSubscription) {
+    public LgeW7RIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
         mSetPreferredNetworkType = -1;
         mQANElements = 5;
@@ -210,66 +210,6 @@ public class LGEQualcommRIL extends RIL implements CommandsInterface {
 
         return status;
     }
-
-    /*
-    @Override
-    protected DataCallResponse getDataCallResponse(Parcel p, int version) {
-        DataCallResponse dataCall = new DataCallResponse();
-
-        boolean oldRil = needsOldRilFeature("datacall");
-
-        if (!oldRil && version < 5) {
-            return super.getDataCallResponse(p, version);
-        } else if (!oldRil) {
-            dataCall.version = version;
-            dataCall.status = p.readInt();
-            dataCall.suggestedRetryTime = p.readInt();
-            dataCall.cid = p.readInt();
-            dataCall.active = p.readInt();
-            dataCall.type = p.readString();
-            dataCall.ifname = p.readString();
-            if ((dataCall.status == DcFailCause.NONE.getErrorCode()) &&
-                    TextUtils.isEmpty(dataCall.ifname) && dataCall.active != 0) {
-              throw new RuntimeException("getDataCallResponse, no ifname");
-            }
-            String addresses = p.readString();
-            if (!TextUtils.isEmpty(addresses)) {
-                dataCall.addresses = addresses.split(" ");
-            }
-            String dnses = p.readString();
-            if (!TextUtils.isEmpty(dnses)) {
-                dataCall.dnses = dnses.split(" ");
-            }
-            String gateways = p.readString();
-            if (!TextUtils.isEmpty(gateways)) {
-                dataCall.gateways = gateways.split(" ");
-            }
-        } else {
-            dataCall.version = 4; // was dataCall.version = version;
-            dataCall.cid = p.readInt();
-            dataCall.active = p.readInt();
-            dataCall.type = p.readString();
-            dataCall.ifname = mLastDataIface[dataCall.cid];
-            p.readString(); // skip APN
-
-            if (TextUtils.isEmpty(dataCall.ifname)) {
-                dataCall.ifname = mLastDataIface[0];
-            }
-
-            String addresses = p.readString();
-            if (!TextUtils.isEmpty(addresses)) {
-                dataCall.addresses = addresses.split(" ");
-            }
-            p.readInt(); // RadioTechnology
-            p.readInt(); // inactiveReason
-
-            dataCall.dnses = new String[2];
-            dataCall.dnses[0] = SystemProperties.get("net."+dataCall.ifname+".dns1");
-            dataCall.dnses[1] = SystemProperties.get("net."+dataCall.ifname+".dns2");
-        }
-
-        return dataCall;
-    }*/
 
     @Override
     public void getNeighboringCids(Message response) {
@@ -642,33 +582,6 @@ public class LGEQualcommRIL extends RIL implements CommandsInterface {
         return response;
     }
 
-    /*
-    @Override
-    public void
-    setupDataCall(String radioTechnology, String profile, String apn,
-            String user, String password, String authType, String protocol,
-            Message result) {
-
-        riljLog("> getIMSI:UPDATING VSS PROFILE ");
-        RILRequest rrSPT = RILRequest.obtain(
-                0x88, null); // RIL_REQUEST_VSS_UPDATE_PROFILE
-        rrSPT.mParcel.writeInt(1); // pdnId
-        rrSPT.mParcel.writeInt(apn.length()); // apnLength
-        rrSPT.mParcel.writeString(apn); // apn
-        rrSPT.mParcel.writeInt(0); // ipType
-        rrSPT.mParcel.writeInt(0); // inactivityTime
-        rrSPT.mParcel.writeInt(1); // enable
-        rrSPT.mParcel.writeInt(0); // authType
-        rrSPT.mParcel.writeInt(0); // esmInfo
-        rrSPT.mParcel.writeString(""); // username
-        rrSPT.mParcel.writeString(""); // password
-        send(rrSPT);
-
-
-        super.setupDataCall(radioTechnology, profile, apn, user, password, 
-                            authType, protocol, result);
-    }*/
-
     @Override
     public void getImsRegistrationState(Message result) {
         if(mRilVersion >= 8)
@@ -684,4 +597,3 @@ public class LGEQualcommRIL extends RIL implements CommandsInterface {
     }
 
 }
-
