@@ -47,11 +47,11 @@
 
     <!-- Performance profiles 
     <string name="config_perf_profile_prop">sys.perf.profile</string>
-    <string name="config_perf_profile_default_entry">1</string>
+    <string name="config_perf_profile_default_entry">1</string>-->
 
     <!-- Whether to enable auto provisioning the app for new SIM card on boot.
-    <bool name="config_auto_provision_enable">true</bool>
--->
+    <bool name="config_auto_provision_enable">true</bool>-->
+
     <!-- Set to true if we need to not prefer an APN.
          This is being added to enable a simple scenario of pre-paid
          provisioning on some carriers, working around a bug (7305641)
@@ -269,9 +269,9 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. 
-    <integer name="config_deviceHardwareWakeKeys">1</integer>
+    <integer name="config_deviceHardwareWakeKeys">1</integer>-->
 
-         Device supports LED flashlight 
+     <!--      Device supports LED flashlight 
     <bool name="config_enableTorch">true</bool> -->
 
     <!-- Disable lockscreen translucent decor by default -->
