@@ -80,8 +80,8 @@ PRODUCT_COPY_FILES += \
     device/lge/w7/prebuilt/etc/init.zetaw.wifi.sh:system/etc/init.zetaw.wifi.sh \
     device/lge/w7/prebuilt/etc/init.crda.sh:system/etc/init.crda.sh \
     device/lge/w7/prebuilt/etc/init.zetaw.post_boot.sh:system/etc/init.zetaw.post_boot.sh \
-    device/lge/w7/prebuilt/etc/init.zetaw.model.sh:system/etc/init.zetaw.model.sh \
     device/lge/w7/prebuilt/etc/init.zetaw.bt.sh:system/etc/init.zetaw.bt.sh \
+    device/lge/w7/prebuilt/etc/init.zetaw.model.sh:system/etc/init.zetaw.model.sh \
     device/lge/w7/prebuilt/etc/sap.conf:system/etc/sap.conf \
     device/lge/w7/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/lge/w7/prebuilt/etc/msap.conf:system/etc/msap.conf \
@@ -98,7 +98,6 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_COPY_FILES += \
     device/lge/w7/rootdir/fstab.w7:root/fstab.w7 \
-    device/lge/w7/rootdir/fstab_f2fs.w7:root/fstab_f2fs.w7 \
     device/lge/w7/rootdir/init.class_main.sh:root/init.class_main.sh \
     device/lge/w7/rootdir/init.lge.early.rc:root/init.lge.early.rc \
     device/lge/w7/rootdir/init.lge.rc:root/init.lge.rc \
@@ -119,9 +118,7 @@ PRODUCT_COPY_FILES += \
     device/lge/w7/rootdir/init.zetaw.syspart_fixup.sh:root/init.zetaw.syspart_fixup.sh \
     device/lge/w7/rootdir/init.zetaw.usb.rc:root/init.zetaw.usb.rc \
     device/lge/w7/rootdir/init.zetaw.usb.sh:root/init.zetaw.usb.sh \
-    device/lge/w7/rootdir/ueventd.w7.rc:root/ueventd.w7.rc \
-    device/lge/w7/rootdir/sbin/bbx:root/sbin/bbx \
-    device/lge/w7/rootdir/fscheck.sh:root/fscheck.sh
+    device/lge/w7/rootdir/ueventd.w7.rc:root/ueventd.w7.rc
 
 # TWRP
 PRODUCT_COPY_FILES += \
@@ -214,11 +211,11 @@ PRODUCT_PACKAGES += \
     libebtc
 
 # FM radio
-PRODUCT_PACKAGES += \
-    qcom.fmradio \
-    libqcomfm_jni \
-    FM2 \
-    FMRecord
+#PRODUCT_PACKAGES += \
+    #qcom.fmradio \
+    #libqcomfm_jni \
+    #FM2 \
+    #FMRecord
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -229,7 +226,6 @@ PRODUCT_PACKAGES += \
     copybit.msm8226\
     gralloc.msm8226 \
     hwcomposer.msm8226 \
-    keystore.msm8226 \
     lights.msm8226 \
     memtrack.msm8226 \
     power.msm8226
