@@ -35,7 +35,7 @@ TARGET_LIBINIT_DEFINES_FILE := device/lge/w7/init/init_w7.c
 TARGET_ARCH := arm
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
 TARGET_BOARD_PLATFORM := msm8226
-TARGET_CPU_VARIANT := krait
+TARGET_CPU_VARIANT := cortex-a7
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 TARGET_USE_KINGFISHER_OPTIMIZATION := true
 TARGET_CPU_ABI := armeabi-v7a
@@ -49,7 +49,7 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/lge/w7/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/lge/msm8226
 TARGET_KERNEL_CONFIG := cm11_msm8226_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=w7
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=w7 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
@@ -158,7 +158,7 @@ BOARD_VOLD_MAX_PARTITIONS := 40
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00E00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00E00000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 754974720
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1560281088
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_LARGE_FILESYSTEM := true
 
@@ -197,6 +197,33 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Nfc
 BOARD_NFC_CHIPSET := pn547
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += device/lge/w7/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    akmd.te \
+    device.te \
+    file_contexts \
+    file.te \
+    init.te \
+    kcal_dev.te \
+    kernel.te \
+    mediaserver.te \
+    mm-qcamerad.te \
+    mpdecision.te \
+    platform_app.te \
+    property_contexts \
+    recovery.te \
+    rmt_storage.te \
+    system_app.te \
+    system_server.te \
+    thermal-engine.te \
+    ueventd.te \
+    vibe_dev.te \
+    vold.te
+
 
 #Webchromium...
 PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
