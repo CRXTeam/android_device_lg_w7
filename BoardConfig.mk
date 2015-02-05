@@ -135,10 +135,6 @@ TARGET_USES_QCOM_WCNSS_QMI := true
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 
-# Enable WEBGL in WebKit
-ENABLE_WEBGL := true
-TARGET_FORCE_CPU_UPLOAD := true
-
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
@@ -223,7 +219,3 @@ BOARD_SEPOLICY_UNION += \
     ueventd.te \
     vibe_dev.te \
     vold.te
-
-
-#Webchromium...
-PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
