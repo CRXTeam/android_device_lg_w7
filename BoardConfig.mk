@@ -44,6 +44,12 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := w7
 
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon -mfloat-abi=softfp
+SUPPRES_UNUSED_WARNING := true
+OPT_MEMORY := true
+TARGET_CPU_SMP := true
+
 # Kernel image
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/lge/w7/mkbootimg.mk
@@ -194,28 +200,3 @@ EXTENDED_FONT_FOOTPRINT := true
 # Nfc
 BOARD_NFC_CHIPSET := pn547
 
-# SELinux
-include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/lge/w7/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    akmd.te \
-    device.te \
-    file_contexts \
-    file.te \
-    init.te \
-    kcal_dev.te \
-    kernel.te \
-    mediaserver.te \
-    mm-qcamerad.te \
-    mpdecision.te \
-    platform_app.te \
-    property_contexts \
-    recovery.te \
-    rmt_storage.te \
-    system_app.te \
-    system_server.te \
-    thermal-engine.te \
-    ueventd.te \
-    vibe_dev.te \
-    vold.te
